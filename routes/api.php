@@ -23,6 +23,8 @@ route::get('product/{product}','ProductController@show');
 route::post('product/{product}','ProductController@order');
 
 route::delete('order/{order}','OrderController@destroy');
+ 
+route::post('contact-us','MessageController@store');
 
 Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@login');
@@ -34,6 +36,10 @@ Route::group(['middleware' => 'auth:api'], function(){
     route::delete('product/{product}','ProductController@destroy');
     
     route::get('orders','OrderController@index');
+    
     // update the order if it's done 
     route::put('order/{order}','OrderController@markAsOrdered');
+    
+    // get a json response of all the messages in the database
+    route::get('contact-us','MessageController@index');
 });
