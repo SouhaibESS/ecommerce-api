@@ -109,7 +109,10 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails())
         {
-            return response()->json($validator->errors(), 400);
+            return response()->json([
+                'success' => true,
+                'errors' => $validator->errors()
+            ], 400);
         }
 
         // check if the quatity ordered is hogher than the one in the stock

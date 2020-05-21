@@ -12,7 +12,8 @@ class MessageController extends Controller
     public function index()
     {
         return response()->json([
-            'messages' => Message::paginate(10)
+            'messages' => Message::paginate(10),
+            'success' => true
         ]);
     }
 
@@ -31,7 +32,7 @@ class MessageController extends Controller
             return response()->json([
                 'errors' => $validator->errors(),
                 'success' => false
-        ], 400);
+            ], 400);
         }
 
         $message = Message::create([

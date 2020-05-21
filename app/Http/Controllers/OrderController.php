@@ -9,7 +9,10 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return response()->json(['orders' => Order::paginate(10)]);
+        return response()->json([
+            'success' => true,
+            'orders' => Order::paginate(10)
+        ]);
     }
 
     public function markAsOrdered($id)
@@ -19,7 +22,10 @@ class OrderController extends Controller
         if(is_null($order))
         {
             // if the id given doesn't match any order an error message is returned
-            return response()->json('order not found',404);
+            return response()->json([
+                'success' => false,
+                'message' => 'order not found'
+            ],404);
         }
 
         // setting the ordered proprety to true
