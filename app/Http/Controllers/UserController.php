@@ -50,9 +50,25 @@ class UserController extends Controller
     {
         $creds = $request->json()->all();
 
-        $token = JWTAuth::attempt($creds);
+        if(! $token = JWTAuth::attempt($creds))
+        {
+            return response()->json([
+                'error' => 'Unauthorized',
+                'success' => false
+            ], 401);
+        }
 
-        return response()->json(['token' => $token]);
+        return response()->json([
+            'token' => $token,
+            'success' => true
+        ], 200);
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
     }
 
     public function getAuthentificatedUser()

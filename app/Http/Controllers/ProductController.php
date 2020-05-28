@@ -104,6 +104,7 @@ class ProductController extends Controller
             'client_email' => 'required',
             'client_phone_number' => 'required',
             'ordered_quantity' => 'required',
+            'total_price' => 'required'
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -129,7 +130,8 @@ class ProductController extends Controller
             'client_name' => $request->input('client_name'),
             'client_email' => $request->input('client_email'),
             'client_phone_number' => $request->input('client_phone_number'),
-            'ordered_quantity' => $request->input('ordered_quantity')
+            'ordered_quantity' => $request->input('ordered_quantity'),
+            'price' => $request->input('total_  price')
         ]);
 
         // updating the product quantity after making the order

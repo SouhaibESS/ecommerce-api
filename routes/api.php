@@ -27,9 +27,12 @@ route::post('contact-us','MessageController@store');
 
 Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@login');
-Route::get('profile', 'UserController@getAuthentificatedUser');
 
 Route::group(['middleware' => 'auth:api'], function(){
+
+    Route::get('profile', 'UserController@getAuthentificatedUser');
+    Route::post('logout', 'UserController@logout');
+
     route::post('product','ProductController@store');
     route::put('product','ProductController@store');
     route::delete('product/{product}','ProductController@destroy');
